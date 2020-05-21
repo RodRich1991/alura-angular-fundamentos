@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { ErrorsModule } from './errors/errors.module';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/coremodule';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
