@@ -5,9 +5,7 @@ import { AppComponent } from './app.component';
 import { PhotosModule } from './photos/photos.module';
 import { AppRoutingModule } from './app.routing.module';
 import { ErrorsModule } from './errors/errors.module';
-import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/coremodule';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +16,6 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     PhotosModule,
     ErrorsModule,
-    HomeModule,
     CoreModule
   ],
   providers: [],
