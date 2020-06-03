@@ -20,4 +20,13 @@ export class PhotoService {
         return this.http
             .get<Photo[]>(API + '/' + userName + '/photos', { params });
     }
+
+    upload(file: File, description: string, allowComments: boolean) {
+        const form = new FormData();
+        form.append('description', description);
+        form.append('allowComments', allowComments.toString());
+        form.append('imageFile', file);
+        
+        return this.http.post(API + '/photos/upload', form);
+    }
 }
