@@ -32,7 +32,14 @@ export class PhotoService {
         form.append('allowComments', allowComments.toString());
         form.append('imageFile', file);
         
-        return this.http.post(API + '/photos/upload', form);
+        return this.http.post(
+            API + '/photos/upload', 
+            form,
+            {
+                observe: 'events',
+                reportProgress: true
+            }
+        );
     }
 
     findById(photoId: number) {
