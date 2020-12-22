@@ -1,12 +1,13 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { lowerCaseValidator } from '../../shared/validators/lowercase.validator';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { NewUser } from './new-user';
 import { SignUpService } from './signup.service';
-import { Router } from '@angular/router';
 import { PlatformDetectorService } from '../../core/plataform-detector/plataform-detector.service';
+import { areUserPasswordDifferents } from './are-user-password-differents.validator';
 
 @Component({
     templateUrl: './signup.component.html',
@@ -56,18 +57,22 @@ export class SignUpComponent implements OnInit {
                     Validators.maxLength(14) 
                 ]
             ]
+        }, {
+            validator: areUserPasswordDifferents
         });
         this.focusOnEmailInput();
     }
 
     signUp() {
-        const newUser: NewUser = this.signupForm.getRawValue();
-        this.signUpService
-        .signUp(newUser)
-        .subscribe(
-            () => this.router.navigate(['']),
-            error => console.error(error)
-        );
+        if (this.signupForm.valid && !this.signupForm.pending) {
+            const newUser: NewUser = this.signupForm.getRawValue();
+            this.signUpService
+            .signUp(newUser)
+            .subscribe(
+                () => this.router.navigate(['']),
+                error => console.error(error)
+            );
+        }
     }
     
     focusOnEmailInput() {
